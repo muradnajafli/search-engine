@@ -1,0 +1,13 @@
+*.iml
+.gradle
+/local.properties
+# User-specific stuff:
+.idea/
+
+# Gradle:
+/projectFilesBackup*/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+out/
