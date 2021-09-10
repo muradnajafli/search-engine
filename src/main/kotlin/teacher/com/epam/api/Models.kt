@@ -1,22 +1,19 @@
 package teacher.com.epam.api
 
-/**
- * Represents base class of content on the our Online TV service.
- */
 /*
 TODO: implement subclasses of asset as described bellow
  * Movie (represents VOD)
     - in [SearchResult] should looks like -> "The Seven Deadly Sins (16.11.2014)"
     - but searching among this class should ignore release year.
-      For example: query -> 1 shouldn't find "The Seven Deadly Sins (16.11.2014)"
+      For example: query -> `1` shouldn't find "The Seven Deadly Sins (16.11.2014)"
  * TvChannel (represents LIVE)
     - in [SearchResult] should look like -> "№2. Football 1"
     - but searching among this class should ignore channel number.
-       For example: query -> 2 shouldn't find "№2. Football 1"
+       For example: query -> `2` shouldn't find "№2. Football 1"
   * Cast (represents CREW)
     - in [SearchResult] should look like -> "Jarek Franciszka (3 films)"
     - but searching among this class should ignore film counter.
-       For example: query -> 3 shouldn't find "Jarek Franciszka (3 films)"
+       For example: query -> `3` shouldn't find "Jarek Franciszka (3 films)"
  */
 abstract class Asset {
 
@@ -30,7 +27,7 @@ abstract class Asset {
 
         /**
          * Video content, which are currently streaming ont the server
-         * (tv channels, podcasts, e.t.c).
+         * (TV channels, podcasts, e.t.c).
          */
         LIVE,
 

@@ -7,7 +7,7 @@ in coroutine context.
 
 ## Introduction
 
-Lets imaging that we need to implement online cinema. It provides access to a lot of video content and other data, which
+Let's imagine that we need to implement online cinema. It provides access to a lot of video content and other data, which
 are related to the content. **Asset** - is the base abstract entity, which represents a content. It can have 
 three **Type**'s - _VOD_ (video on demand), _LIVE_ (streams) and _CREW_ (people, who participate in movie 
 making process). So, for example, user can find a movie, see small description, take a look on cast and crew
@@ -25,8 +25,8 @@ searched. Engine MUST be able to:
     * **?** - indicate the type of content the user is looking for. Could be placed ONLY at the end of the text. For
       example: _Thor 3?VOD_.
     * **@** - changes the approach to finding matches to **startWith**. Could be placed ONLY on the beginning of the
-      text For example:
-      assets -> [Al Pacino, Pacman], query -> _pac_. Only [Pacman] should be found.
+      text. For example:
+      assets -> [Al Pacino, Pacman], query -> _@pac_. Only [Pacman] should be found.
 * depending on the request, the mechanism must search among all content or according to the type specified in the
   request
 * when user entered _empty_ or _blank_ string, search shouldn't start and error message should be thrown.
