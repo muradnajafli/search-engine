@@ -1,5 +1,8 @@
 package teacher.com.epam.api
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 /*
 TODO: implement subclasses of asset as described bellow
  * Movie (represents VOD)
@@ -43,4 +46,33 @@ abstract class Asset {
     /** Title of the asset, which holds all necessary information about the asset*/
     //TODO: should be used in [SearchApi] to match search query.
     abstract fun getPoster(): String
+
+    data class Movie (
+        val label: String,
+        val releaseYear: Date,
+        override val type: Type = Type.VOD
+    ) : Asset() {
+        override fun getPoster(): String = label
+        override fun toString(): String = "$label (${SimpleDateFormat("dd.MM.yyyy").format(releaseYear)})"
+    }
+
+    data class Cast (
+        val name: String,
+        val surname: String,
+        val filmCount: Int,
+        override val type: Type = Type.CREW
+    ) : Asset() {
+        override fun getPoster(): String = "$name $surname"
+        override fun toString(): String = "${getPoster()} ($filmCount films)"
+    }
+
+    data class TvChannel (
+        val label: String,
+        val number: Int,
+        override val type: Type = Type.LIVE
+    ): Asset() {
+        override fun getPoster(): String = label
+        override fun toString(): String = "№$number. $label"
+
+    }
 }
