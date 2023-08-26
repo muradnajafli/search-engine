@@ -4,14 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import teacher.com.epam.api.Asset
 
 /** Represents base content factory, which provides concrete type of [Asset]s */
-/*
-TODO:
- * add three factories with given content below:
-    - with Asset.Type.VOD content (Movies)
-    - with Asset.Type.LIVE content (TvChannel)
-    - with Asset.Type.CREW content (Cast)
- IMPORTANT: do not modify data because it uses in tests.
- */
 abstract class ContentFactory<out T : Asset> {
 
     /** Represents movie, live or cast data */

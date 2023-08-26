@@ -10,13 +10,6 @@ import teacher.com.epam.repository.SearchRepository
  * In Clean Architecture this class should be named as UseCase or Interactor.
  * All necessary logic should be implemented here.
  */
-/*
-TODO: implement all business logic which converts input stream to [Query]
-      and then used to in [SearchRepository]
- * your implementation should receive CoroutineDispatcher in constructor
-   (it gives possibility to write tests)
- * flow should be executed on provided CoroutineDispatcher
- */
 class SearchEngine(
     private val repository: SearchRepository,
     private val dispatcher: CoroutineDispatcher

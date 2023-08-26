@@ -3,21 +3,6 @@ package teacher.com.epam.api
 import java.text.SimpleDateFormat
 import java.util.*
 
-/*
-TODO: implement subclasses of asset as described bellow
- * Movie (represents VOD)
-    - in [SearchResult] should looks like -> "The Seven Deadly Sins (16.11.2014)"
-    - but searching among this class should ignore release year.
-      For example: query -> `1` shouldn't find "The Seven Deadly Sins (16.11.2014)"
- * TvChannel (represents LIVE)
-    - in [SearchResult] should look like -> "№2. Football 1"
-    - but searching among this class should ignore channel number.
-       For example: query -> `2` shouldn't find "№2. Football 1"
-  * Cast (represents CREW)
-    - in [SearchResult] should look like -> "Jarek Franciszka (3 films)"
-    - but searching among this class should ignore film counter.
-       For example: query -> `3` shouldn't find "Jarek Franciszka (3 films)"
- */
 abstract class Asset {
 
     enum class Type {
@@ -44,7 +29,6 @@ abstract class Asset {
     abstract val type: Type
 
     /** Title of the asset, which holds all necessary information about the asset*/
-    //TODO: should be used in [SearchApi] to match search query.
     abstract fun getPoster(): String
 
     data class Movie (

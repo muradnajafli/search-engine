@@ -12,15 +12,7 @@ import kotlinx.coroutines.flow.Flow
  * For example:
  * query with type [Asset.Type.VOD] must check only content factory which provides ONLY movies.
  */
-/*
-TODO:
- * add implementation, which will interact with all content
-   factories and returns the appropriate result.
- * functions with [Asset.Type] in arguments MUST search
-   only in specific (matching) [ContentFactory].
-   For example:
-   query with type [Asset.Type.VOD] must check content factory which provides ONLY movies.
- */
+
 interface SearchApi {
 
     /**

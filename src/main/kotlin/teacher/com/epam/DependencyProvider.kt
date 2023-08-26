@@ -17,7 +17,6 @@ import teacher.com.epam.repository.SearchRepository
  * you need in one place.
  * More to read : [link](https://en.wikipedia.org/wiki/Service_locator_pattern)
  */
-//TODO: add your implementation of each contract in this task
 @ExperimentalCoroutinesApi
 object DependencyProvider {
 

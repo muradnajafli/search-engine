@@ -7,10 +7,6 @@ import teacher.com.epam.api.SearchApi
  * Represents concrete type of search request to cover
  * all search cases in [SearchApi]
  */
-/*
-TODO: add all necessary subclasses to satisfy [SearchRepository] contract
-      and cover all [SearchApi] cases.
- */
 sealed class Query(val input: String) {
     class TypedContains(input: String, val type: Asset.Type ): Query(input)
     class TypedStartedWith(input: String, val type: Asset.Type ): Query(input)

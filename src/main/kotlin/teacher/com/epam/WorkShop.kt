@@ -9,11 +9,6 @@ import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.runBlocking
 import teacher.com.epam.engine.SearchEngine
 
-/*
-TODO: write a program, which should read user's input and shows the result.
-      Main logic is described in Readme.md. There are some additional requirements:
-    * your implementation should use [DependencyProvider] to obtain objects.
- */
 @ExperimentalCoroutinesApi
 var isRunning = true
 
