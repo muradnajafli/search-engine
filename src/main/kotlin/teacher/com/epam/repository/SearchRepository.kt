@@ -13,5 +13,5 @@ TODO: add implementation, which will interact with SearchApi and returns the res
 */
 interface SearchRepository {
 
-    suspend fun searchContentAsync(query: Query): Flow<Asset>
+    fun searchContentAsync(query: Query): Flow<Asset>
 }

@@ -13,33 +13,33 @@ class SearchDataSource(
     private val castFactory: CastFactory,
     private val tvChannelFactory: TvChannelFactory
 ): SearchApi {
-    override suspend fun searchByContains(query: String): Flow<Asset> {
-        return mergeAll().onEach { delay(100L) }
+    override fun searchByContains(query: String): Flow<Asset> {
+        return mergeContent().onEach { delay(100L) }
             .filter { it.getPoster().contains(query, true) }
     }
 
-    override suspend fun searchByContains(query: String, type: Asset.Type): Flow<Asset> {
-        return type.toFlow().onEach { delay(100L) }
+    override fun searchByContains(query: String, type: Asset.Type): Flow<Asset> {
+        return getTypeFlow(type).onEach { delay(100L) }
             .filter { it.getPoster().contains(query, true ) }
     }
 
-    override suspend fun searchByStartWith(query: String): Flow<Asset> {
-        return mergeAll().onEach { delay(100L) }
+    override fun searchByStartWith(query: String): Flow<Asset> {
+        return mergeContent().onEach { delay(100L) }
             .filter { it.getPoster().startsWith(query, true) }
     }
 
-    override suspend fun searchByStartWith(query: String, type: Asset.Type): Flow<Asset> {
-        return type.toFlow().onEach { delay(100L) }
+    override fun searchByStartWith(query: String, type: Asset.Type): Flow<Asset> {
+        return getTypeFlow(type).onEach { delay(100L) }
             .filter { it.getPoster().startsWith(query, true) }
     }
 
-    private fun mergeAll() = merge(
+    private fun mergeContent() = merge(
         movieFactory.provideContent(),
         tvChannelFactory.provideContent(),
         castFactory.provideContent()
     )
-    private fun Asset.Type.toFlow(): Flow<Asset> {
-        return when (this) {
+    private fun getTypeFlow(type: Asset.Type): Flow<Asset> {
+        return when (type) {
             Asset.Type.VOD -> movieFactory.provideContent()
             Asset.Type.LIVE -> tvChannelFactory.provideContent()
             Asset.Type.CREW -> castFactory.provideContent()

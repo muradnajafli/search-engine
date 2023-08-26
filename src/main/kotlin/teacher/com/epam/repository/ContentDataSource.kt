@@ -7,7 +7,7 @@ import teacher.com.epam.api.SearchApi
 
 @ExperimentalCoroutinesApi
 class ContentDataSource(private val searchApi: SearchApi): SearchRepository {
-    override suspend fun searchContentAsync(query: Query): Flow<Asset> {
+    override fun searchContentAsync(query: Query): Flow<Asset> {
         return when (query) {
             is Query.TypedContains -> searchApi.searchByContains(query.input, query.type)
             is Query.TypedStartedWith -> searchApi.searchByStartWith(query.input, query.type)

@@ -27,23 +27,23 @@ interface SearchApi {
      * Searches for assets, whose poster **contains** the [query]
      * @return flow with results.
      */
-    suspend fun searchByContains(query: String): Flow<Asset>
+    fun searchByContains(query: String): Flow<Asset>
 
     /**
      * Searches for assets of the given [type], whose poster **contains** the [query]
      * @return flow with results.
      */
-    suspend fun searchByContains(query: String, type: Asset.Type): Flow<Asset>
+    fun searchByContains(query: String, type: Asset.Type): Flow<Asset>
 
     /**
      * Searches for assets, whose poster **starts with** the [query]
      * @return flow with results.
      */
-    suspend fun searchByStartWith(query: String): Flow<Asset>
+    fun searchByStartWith(query: String): Flow<Asset>
 
     /**
      * Searches for assets of the given [type], whose poster **starts with** the [query]
      * @return flow with results.
      */
-    suspend fun searchByStartWith(query: String, type: Asset.Type): Flow<Asset>
+    fun searchByStartWith(query: String, type: Asset.Type): Flow<Asset>
 }
