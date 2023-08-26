@@ -23,7 +23,7 @@ class SearchEngine(
 ) {
     private val regex: Regex = Regex("(\\?\\w{3,4}\$)")
 
-    suspend fun searchContentAsync(rawInput: String): Flow<SearchResult> {
+    fun searchContentAsync(rawInput: String): Flow<SearchResult> {
         validateInput(rawInput){ message -> error(message) }
         val matchResult: MatchResult? = regex.find(rawInput)
         val type = matchResult?.value.toAssetType()
@@ -32,12 +32,7 @@ class SearchEngine(
 
         return repository.searchContentAsync(query)
             .flowOn(dispatcher)
-            .toList(mutableListOf())
-            .groupBy { it.type }
-            .map { data -> SearchResult(data.value, data.key, data.key.toGroupName()) }
-            .asFlow()
-
-
+            .map { SearchResult(listOf(it), it.type, it.type.toGroupName()) }}
     }
     private inline fun validateInput(rawInput: String, block: (String) -> Nothing) {
         val message = when {
@@ -68,7 +63,6 @@ class SearchEngine(
         }
 
     }
-}
 
 private fun Asset.Type.toGroupName(): String {
     return when (this) {
