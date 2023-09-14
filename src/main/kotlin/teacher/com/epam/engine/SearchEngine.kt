@@ -19,9 +19,9 @@ class SearchEngine(
     fun searchContentAsync(rawInput: String): Flow<SearchResult> {
         validateInput(rawInput)
         val matchResult: MatchResult? = regex.find(rawInput)
-        val type = matchResult?.value.toAssetType()
-        val input = type?.let { rawInput.removeRange(matchResult!!.range) } ?: rawInput
-        val query = input.toQuery(type)
+        val assetType = matchResult?.value.toAssetType()
+        val input = assetType?.let { rawInput.removeRange(matchResult!!.range) } ?: rawInput
+        val query = input.toQuery(assetType)
 
         return repository.searchContentAsync(query)
             .flowOn(dispatcher)
