@@ -21,9 +21,10 @@ class MovieFactory: ContentFactory<Movie>() {
 
     override fun provideContent(): Flow<Movie> {
         return List(dataList.size) { index ->
+            val (label, releaseYear) = dataList[index]
             Movie(
-                label = dataList[index].first,
-                releaseYear = Date(dataList[index].second)
+                label = label,
+                releaseYear = Date(releaseYear)
             )
         }.asFlow()
     }
