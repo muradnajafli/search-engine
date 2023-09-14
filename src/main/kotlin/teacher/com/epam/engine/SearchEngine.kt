@@ -17,7 +17,7 @@ class SearchEngine(
     private val regex: Regex = Regex("(\\?\\w{3,4}\$)")
 
     fun searchContentAsync(rawInput: String): Flow<SearchResult> {
-        validateInput(rawInput){ message -> error(message) }
+        validateInput(rawInput)
         val matchResult: MatchResult? = regex.find(rawInput)
         val type = matchResult?.value.toAssetType()
         val input = type?.run { rawInput.removeRange(matchResult!!.range) } ?: rawInput
@@ -27,14 +27,8 @@ class SearchEngine(
             .flowOn(dispatcher)
             .map { SearchResult(listOf(it), it.type, it.type.toGroupName()) }}
     }
-    private inline fun validateInput(rawInput: String, block: (String) -> Nothing) {
-        val message = when {
-            rawInput == "@" -> "Incorrect input"
-            rawInput.isEmpty() -> "Input is empty"
-            rawInput.isBlank() -> "Input is blank"
-            else -> null
-        }
-        message?.let(block)
+    private fun validateInput(rawInput: String) {
+        require(rawInput != "@" && rawInput.isNotBlank()) { "Incorrect input" }
     }
     private fun String?.toAssetType(): Asset.Type? {
         return this?.drop(1)?.capitalize()?.let {
