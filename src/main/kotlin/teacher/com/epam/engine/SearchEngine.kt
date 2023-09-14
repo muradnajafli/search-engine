@@ -25,7 +25,9 @@ class SearchEngine(
 
         return repository.searchContentAsync(query)
             .flowOn(dispatcher)
-            .map { SearchResult(listOf(it), it.type, it.type.toGroupName()) }}
+            .map { asset -> SearchResult(
+                listOf(asset),
+                asset.type, asset.type.toGroupName()) }}
     }
     private fun validateInput(rawInput: String) {
         require(rawInput != "@" && rawInput.isNotBlank()) { "Incorrect input" }
