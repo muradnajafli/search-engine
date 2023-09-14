@@ -20,7 +20,7 @@ class SearchEngine(
         validateInput(rawInput)
         val matchResult: MatchResult? = regex.find(rawInput)
         val type = matchResult?.value.toAssetType()
-        val input = type?.run { rawInput.removeRange(matchResult!!.range) } ?: rawInput
+        val input = type?.let { rawInput.removeRange(matchResult!!.range) } ?: rawInput
         val query = input.toQuery(type)
 
         return repository.searchContentAsync(query)
