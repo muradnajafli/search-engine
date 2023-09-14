@@ -39,16 +39,14 @@ class SearchEngine(
     }
     private fun String.toQuery(assetType: Asset.Type?): Query {
         return if (startsWith("@")) {
-            when (assetType) {
-                null -> Query.RawStartedWith(drop(1))
-                else -> Query.TypedStartedWith(drop(1), assetType)
-            }
+            assetType?.let {
+                Query.TypedStartedWith(drop(1), assetType)
+            } ?: Query.RawStartedWith(drop(1))
 
         } else {
-            when (assetType) {
-                null -> Query.RawContains(this)
-                else -> Query.TypedContains(this, assetType)
-            }
+            assetType?.let {
+                Query.TypedContains(this, assetType)
+            } ?: Query.RawContains(this)
         }
 
     }

@@ -20,9 +20,10 @@ class CastFactory: ContentFactory<Cast>() {
 
     override fun provideContent(): Flow<Cast> {
         return List(dataList.size) { index ->
+            val (name, surname) = dataList[index].split(" ")
             Cast(
-                name = dataList[index].split(" ").first(),
-                surname = dataList[index].split(" ").last(),
+                name = name,
+                surname = surname,
                 filmCount = index + 1
             )
         }.asFlow()
