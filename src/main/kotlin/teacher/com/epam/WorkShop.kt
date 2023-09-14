@@ -60,7 +60,7 @@ fun proceedError(error: Throwable) {
 @OptIn(ExperimentalCoroutinesApi::class)
 private fun proceedExit() {
     isRunning = false
-    println("Thank yot for choosing out service. See you next time")
+    println("Thank you for choosing out service. See you next time")
 }
 
 private fun String.isEndProgram(): Boolean = this.equals("exit", ignoreCase = true)
