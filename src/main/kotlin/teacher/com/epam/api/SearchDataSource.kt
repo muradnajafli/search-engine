@@ -14,22 +14,22 @@ class SearchDataSource(
     private val tvChannelFactory: TvChannelFactory
 ): SearchApi {
     override fun searchByContains(query: String): Flow<Asset> {
-        return mergeContent().onEach { delay(100L) }
+        return mergeContent().delayOnEach()
             .filter { it.getPoster().contains(query, true) }
     }
 
     override fun searchByContains(query: String, type: Asset.Type): Flow<Asset> {
-        return getTypeFlow(type).onEach { delay(100L) }
+        return getTypeFlow(type).delayOnEach()
             .filter { it.getPoster().contains(query, true ) }
     }
 
     override fun searchByStartWith(query: String): Flow<Asset> {
-        return mergeContent().onEach { delay(100L) }
+        return mergeContent().delayOnEach()
             .filter { it.getPoster().startsWith(query, true) }
     }
 
     override fun searchByStartWith(query: String, type: Asset.Type): Flow<Asset> {
-        return getTypeFlow(type).onEach { delay(100L) }
+        return getTypeFlow(type).delayOnEach()
             .filter { it.getPoster().startsWith(query, true) }
     }
 
@@ -45,5 +45,5 @@ class SearchDataSource(
             Asset.Type.CREW -> castFactory.provideContent()
         }
     }
-
+    private fun Flow<Asset>.delayOnEach() = onEach { delay(100L) }
 }

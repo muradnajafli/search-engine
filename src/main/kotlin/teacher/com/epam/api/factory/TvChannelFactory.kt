@@ -20,8 +20,9 @@ class TvChannelFactory : ContentFactory<TvChannel>() {
 
     override fun provideContent(): Flow<TvChannel> {
         return List(dataList.size) { index ->
+            val label = dataList[index]
             TvChannel(
-                label = dataList[index],
+                label = label,
                 number = index+1
             )
         }.asFlow()
