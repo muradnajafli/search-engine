@@ -33,7 +33,7 @@ class SearchEngine(
         require(rawInput != "@" && rawInput.isNotBlank()) { "Incorrect input" }
     }
     private fun String?.toAssetType(): Asset.Type? {
-        return this?.drop(1)?.capitalize()?.let {
+        return this?.drop(1)?.toUpperCase()?.let {
             Asset.Type.valueOf(it)
         }
     }
